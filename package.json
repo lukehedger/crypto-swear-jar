@@ -1,0 +1,31 @@
+{
+  "name": "crypto-swear-jar",
+  "version": "1.0.0",
+  "description": "Crypto-backed verbal discipline",
+  "main": "index.js",
+  "scripts": {
+    "compile": "sulk --config ./config/sulk.config.js",
+    "lint": "solium --dir ./contracts",
+    "remix": "remixd -S $(pwd)/contracts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukehedger/crypto-swear-jar.git"
+  },
+  "keywords": [
+    "crypto",
+    "swear",
+    "jar"
+  ],
+  "author": "Luke Hedger (https://www.level-out.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lukehedger/crypto-swear-jar/issues"
+  },
+  "homepage": "https://github.com/lukehedger/crypto-swear-jar#readme",
+  "devDependencies": {
+    "remixd": "^0.1.2",
+    "solium": "^1.1.3",
+    "sulk": "0.0.7"
+  }
+}
