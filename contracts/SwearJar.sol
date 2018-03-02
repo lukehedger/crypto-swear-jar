@@ -115,12 +115,15 @@ contract SwearJar {
   /*
    * @notice SwearJar contract constructor function - called when creating the
              contract. Will create a new Jar with the given parameters.
-   * @param {uint} _deposit Required Deposit to Vote in Jar
+   * @param {uint} _deposit Required Deposit to Vote in Jar in wei
+                            1000000000000000000 wei === 1 ether
    * @param {uint} _quorum  Number of Votes required to ratify a Swear
    */
   function SwearJar(uint _deposit, uint _quorum) public {
     // Set Jar owner to message sender
     address owner = msg.sender;
+
+    // TODO - need to be able to set deposit in wei SwearJar(1000000000000000000, 2)
 
     // Create new Jar
     jar = Jar(_deposit, owner, _quorum);
@@ -181,7 +184,7 @@ contract SwearJar {
     voters.push(voter);
 
     // Create new Swear
-    Swear swear = Swear(true, true, _swearer, _timestamp, votes, voters);
+    Swear memory swear = Swear(true, true, _swearer, _timestamp, votes, voters);
 
     // Add Swear to store
     swearStore[_swear] = swear;
@@ -208,13 +211,13 @@ contract SwearJar {
     }
 
     // Create new Voter
-    Voter voter = Voter(voterDeposit, true, voterAddress, true);
+    Voter memory voter = Voter(voterDeposit, true, voterAddress, true);
 
     // Add Voter to store
     voterStore[voterAddress] = voter;
 
     // Fire VoterRegistered event
-    VoterRegistered(voter);
+    VoterRegistered(voterAddress);
   }
 
   /**
